@@ -1,4 +1,3 @@
-//your JS code here. If required.
 // script.js
 
 var output = document.getElementById("output");
@@ -6,7 +5,8 @@ var output = document.getElementById("output");
 var numbers = [1, 2, 3, 4];
 
 function showArray(arr) {
-  output.textContent = "[" + arr.join(", ") + "]";
+  // Cypress expects text like "2,4" and "4,8" (no spaces or brackets)
+  output.textContent = arr.join(",");
 }
 
 // Initial promise resolving with array
@@ -26,7 +26,8 @@ startPromise()
       });
 
       setTimeout(function () {
-        showArray(filtered);   // Displays [2, 4]
+        // After 1 second display "2,4"
+        showArray(filtered);
         resolve(filtered);
       }, 1000);
     });
@@ -39,9 +40,9 @@ startPromise()
       });
 
       setTimeout(function () {
-        showArray(multiplied); // Displays [4, 8]
+        // After total 3 seconds display "4,8"
+        showArray(multiplied);
         resolve(multiplied);
       }, 2000);
     });
   });
-
